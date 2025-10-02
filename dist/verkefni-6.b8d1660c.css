@@ -20,9 +20,9 @@ input, button, select {
 
 .button {
   padding: calc(var(--spacing) * .5) var(--spacing);
-  border-radius: var(--border-radius-regular);
   color: var(--color-background-primary);
   background-color: var(--color-background-secondary);
+  border-radius: var(--border-radius-regular);
   border: 0;
   font-size: 1rem;
   text-decoration: none;
@@ -31,28 +31,28 @@ input, button, select {
 
 .wrapper {
   gap: var(--vertical-space);
+  width: 100%;
+  min-height: 100vh;
   margin-top: var(--height-nav);
   background-color: var(--color-background-primary);
   grid-template-rows: auto;
   grid-template-columns: 100%;
   justify-items: center;
-  width: 100%;
-  min-height: 100vh;
   display: grid;
 }
 
-.wrapper main {
-  flex: 1;
-}
-
 main {
-  justify-items: center;
   gap: var(--spacing);
   width: var(--width-offset);
   max-width: var(--max-width);
   grid-template-rows: auto;
   grid-template-columns: 100%;
+  justify-items: center;
   display: grid;
+}
+
+.wrapper main {
+  flex: 1;
 }
 
 main > section {
@@ -154,10 +154,9 @@ html:before {
   inset: 0;
 }
 
-.sr-only:not(:focus):not(:active) {
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
+.sr-only:not(:focus, :active) {
   white-space: nowrap;
+  clip-path: inset(50%);
   width: 1px;
   height: 1px;
   position: absolute;
@@ -191,42 +190,42 @@ html {
   display: grid;
 }
 
-.card .card__header {
+.card .card-header {
   width: 100%;
 }
 
-.card .card__content {
+.card .card-content {
   gap: var(--spacing);
   flex-direction: column;
   flex: 1;
   display: flex;
 }
 
-.card .card__text {
+.card .card-text {
   flex: 1;
 }
 
-.card .card__image {
+.card .card-image {
   order: -1;
   width: 100%;
 }
 
-.card .card__kicker {
+.card .card-kicker {
   text-transform: uppercase;
   font-size: .75rem;
   font-weight: 700;
 }
 
-.card .card__title {
+.card .card-title {
   margin-bottom: 1rem;
   font-size: 2rem;
 }
 
-.card .card__image img {
-  border-top-left-radius: var(--border-radius-regular);
-  border-top-right-radius: var(--border-radius-regular);
+.card .card-image img {
   object-fit: cover;
   object-position: 50% 50%;
+  border-top-left-radius: var(--border-radius-regular);
+  border-top-right-radius: var(--border-radius-regular);
   width: 100%;
   height: 300px;
   display: block;
@@ -234,37 +233,37 @@ html {
 
 @media (width >= 550px) {
   .card {
+    grid-template-rows: auto;
     grid-template-columns: repeat(calc(var(--columns)), 1fr);
     gap: var(--gutter);
-    grid-template-rows: auto;
   }
 
-  .card .card__content {
+  .card .card-content {
     grid-column: span 7;
   }
 
-  .card .card__image {
+  .card .card-image {
     order: initial;
     grid-column: span 5;
   }
 
-  .card:nth-child(2n) .card__image {
+  .card:nth-child(2n) .card-image {
     order: -1;
   }
 }
 
 footer {
+  width: 100%;
   padding-top: var(--spacing);
   padding-bottom: var(--spacing);
   background-color: var(--color-accent);
   justify-items: center;
-  width: 100%;
   display: grid;
 }
 
 footer > .content {
-  justify-content: center;
   gap: var(--gutter);
+  justify-content: center;
   width: 100%;
   display: grid;
 }
@@ -275,10 +274,10 @@ footer .footer-section {
 
 @media (width >= 700px) {
   footer > .content {
+    grid-template-rows: auto;
     grid-template-columns: repeat(var(--columns), 1fr);
     width: var(--width-offset);
     max-width: var(--max-width);
-    grid-template-rows: auto;
   }
 
   footer .content > .footer-section {
@@ -295,9 +294,9 @@ footer ul, footer section, footer h2 {
 }
 
 form {
+  grid-template-rows: auto;
   grid-template-columns: repeat(var(--columns), 1fr);
   gap: var(--gutter);
-  grid-template-rows: auto;
   width: 100%;
   display: grid;
 }
@@ -327,15 +326,15 @@ fieldset div span {
 }
 
 fieldset input, fieldset select, fieldset textarea {
+  width: 100%;
   padding: calc(var(--spacing) / 2);
   background-color: #fff;
   border: 1px solid #000;
-  width: 100%;
 }
 
 fieldset input[type="checkbox"] {
-  margin-right: calc(var(--spacing) / 2);
   width: auto;
+  margin-right: calc(var(--spacing) / 2);
   display: inline-block;
 }
 
@@ -423,8 +422,8 @@ nav ul {
 }
 
 nav ul li {
-  white-space: nowrap;
   font-family: var(--font-family-heading);
+  white-space: nowrap;
 }
 
 nav a {
@@ -465,9 +464,9 @@ nav .hide-in-mobile {
 }
 
 table {
+  width: 100%;
   margin-bottom: var(--spacing);
   border-spacing: 0;
-  width: 100%;
 }
 
 table th, table td {
