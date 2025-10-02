@@ -35,13 +35,12 @@ select {
 .button {
   display: inline-block;
   padding: calc(var(--spacing) * 0.5) var(--spacing);
+  font-size: 1rem;
+  color: var(--color-background-primary);
+  text-decoration: none;
+  background-color: var(--color-background-secondary);
   border: 0;
   border-radius: var(--border-radius-regular);
-
-  color: var(--color-background-primary);
-  background-color: var(--color-background-secondary);
-  font-size: 1rem;
-  text-decoration: none;
 }
 
 
@@ -63,18 +62,15 @@ select {
 
   /* grid items eru miðjuð */
   justify-items: center;
-
-  /* pláss fyrir nav, það er nákvæmlega svona hátt */
-  margin-top: var(--height-nav);
   width: 100%;
   min-height: 100vh;
 
+  /* pláss fyrir nav, það er nákvæmlega svona hátt */
+  margin-top: var(--height-nav);
   background-color: var(--color-background-primary);
 }
 
-.wrapper main {
-  flex: 1;
-}
+
 
 
 /** Meginmál og efni forsíðu **/
@@ -84,14 +80,16 @@ main {
   display: grid;
   grid-template-rows: auto;
   grid-template-columns: 100%;
+  gap: var(--spacing);
 
   /* grid items eru miðjuð */
   justify-items: center;
-
-  gap: var(--spacing);
-
   width: var(--width-offset);
   max-width: var(--max-width);
+}
+
+.wrapper main {
+  flex: 1;
 }
 
 main > section {

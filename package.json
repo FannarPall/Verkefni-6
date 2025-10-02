@@ -9,7 +9,7 @@
     "start": "parcel",
     "build": "parcel build",
     "dev": "parcel index.html 'sidur/*.html' --lazy --no-cache",
-    "lint-scss": "stylelint styles.scss"
+    "lint": "stylelint styles.scss ./**/*.scss"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.16.0",

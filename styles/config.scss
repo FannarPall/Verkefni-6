@@ -35,10 +35,10 @@ $grid: true;
   --border-radius-regular: 5px;
 
   /* Litir */
-  --color-background-primary: #ffffff;
-  --color-background-secondary: #000000;
-  --color-accent: #ff9999;
-  --color-protection: rgba(0, 0, 0, 0.35);
+  --color-background-primary: #fff;
+  --color-background-secondary: #000;
+  --color-accent: #f99;
+  --color-protection: rgb(0 0 0 / 35%);
 
   /* Letur stillingar */
   --font-base-size: 1rem;
@@ -62,20 +62,20 @@ html {
 }
 
 @font-face {
-  font-family: "Gelasio";
+  font-family: Gelasio;
   font-style: normal;
   font-weight: 400;
   src: url("./fonts/Gelasio-VariableFont_wght.ttf") format("woff2");
 }
 
 @font-face {
-  font-family: "Gelasio";
+  font-family: Gelasio;
   font-weight: 700;
   src: url("./fonts/Gelasio-VariableFont_wght.ttf") format("woff2");
 }
 
 
-@media (min-width: 700px) {
+@media (width >= 700px) {
   :root {
     --vertical-space: var(--vertical-space-large);
   }
@@ -83,9 +83,9 @@ html {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-background-primary: #000000;
-    --color-background-secondary: #ffffff;
-    --color-accent: #660000;
-    --color-protection: rgba(255, 255, 255, 0.5);
+    --color-background-primary: #000;
+    --color-background-secondary: #fff;
+    --color-accent: #600;
+    --color-protection: rgb(255 255 255 / 50%);
   }
 }

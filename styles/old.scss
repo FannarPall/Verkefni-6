@@ -1,16 +1,15 @@
 
 /* hjálpar class sem felur sjónrænt en skjálesarar lesa */
-.sr-only:not(:focus):not(:active) {
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
+.sr-only:not(:focus, :active) {
+  position: absolute;
+  width: 1px;
   height: 1px;
   overflow: hidden;
-  position: absolute;
   white-space: nowrap;
-  width: 1px;
+  clip-path: inset(50%);
 }
 
-@media (min-width: 700px) {
+@media (width >= 700px) {
   :root {
     --vertical-space: var(--vertical-space-large);
   }
@@ -18,10 +17,10 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-background-primary: #000000;
-    --color-background-secondary: #ffffff;
-    --color-accent: #660000;
-    --color-protection: rgba(255, 255, 255, 0.5);
+    --color-background-primary: #000;
+    --color-background-secondary: #fff;
+    --color-accent: #600;
+    --color-protection: rgb(255 255 255 / 50%);
   }
 }
 
@@ -41,14 +40,14 @@ html {
 }
 
 @font-face {
-  font-family: "Gelasio";
+  font-family: Gelasio;
   font-style: normal;
   font-weight: 400;
   src: url("./fonts/Gelasio-VariableFont_wght.ttf") format("woff2");
 }
 
 @font-face {
-  font-family: "Gelasio";
+  font-family: Gelasio;
   font-weight: 700;
   src: url("./fonts/Gelasio-VariableFont_wght.ttf") format("woff2");
 }
@@ -88,13 +87,31 @@ select {
 .button {
   display: inline-block;
   padding: calc(var(--spacing) * 0.5) var(--spacing);
+  font-size: 1rem;
+  color: var(--color-background-primary);
+  text-decoration: none;
+  background-color: var(--color-background-secondary);
   border: 0;
   border-radius: var(--border-radius-regular);
+}
 
-  color: var(--color-background-primary);
-  background-color: var(--color-background-secondary);
-  font-size: 1rem;
-  text-decoration: none;
+/** Meginmál og efni forsíðu **/
+
+main {
+  /* Notum grid hér til að setja upp bil á milli header, meginmáls og fóts */
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 100%;
+  gap: var(--spacing);
+
+  /* grid items eru miðjuð */
+  justify-items: center;
+  width: var(--width-offset);
+  max-width: var(--max-width);
+}
+
+main > section {
+  width: 100%;
 }
 
 /**
@@ -112,12 +129,11 @@ select {
 
   /* grid items eru miðjuð */
   justify-items: center;
-
-  /* pláss fyrir nav, það er nákvæmlega svona hátt */
-  margin-top: var(--height-nav);
   width: 100%;
   min-height: 100vh;
 
+  /* pláss fyrir nav, það er nákvæmlega svona hátt */
+  margin-top: var(--height-nav);
   background-color: var(--color-background-primary);
 }
 
@@ -130,11 +146,9 @@ nav {
   top: 0;
   left: 0;
   z-index: 10;
-
   width: 100vw;
   height: var(--height-nav);
   overflow: hidden;
-
   background-color: var(--color-background-primary);
   border-bottom: var(--border-nav);
 }
@@ -142,21 +156,18 @@ nav {
 nav ul {
   display: flex;
   gap: calc(var(--spacing) * 2);
-  justify-content: center;
   align-items: center;
-
+  justify-content: center;
   width: 100%;
   height: 100%;
   padding: var(--spacing);
-
   overflow: hidden;
   list-style: none;
 }
 
 nav ul li {
-  white-space: nowrap;
-
   font-family: var(--font-family-heading);
+  white-space: nowrap;
 }
 
 nav a {
@@ -177,13 +188,13 @@ nav .hide-in-mobile {
   display: none;
 }
 
-@media (min-width: 500px) {
+@media (width >= 500px) {
   nav ul li {
     font-size: var(--font-size-headings);
   }
 }
 
-@media (min-width: 900px) {
+@media (width >= 900px) {
   nav ul li {
     font-size: var(--font-size-headings);
   }
@@ -205,77 +216,6 @@ header h1 {
   text-transform: uppercase;
 }
 
-/** Meginmál og efni forsíðu **/
-
-main {
-  /* Notum grid hér til að setja upp bil á milli header, meginmáls og fóts */
-  display: grid;
-  grid-template-rows: auto;
-  grid-template-columns: 100%;
-
-  /* grid items eru miðjuð */
-  justify-items: center;
-
-  gap: var(--spacing);
-
-  width: var(--width-offset);
-  max-width: var(--max-width);
-}
-
-main > section {
-  width: 100%;
-}
-
-/** Forsíða inngangsmynd **/
-
-.intro {
-  display: flex;
-  position: relative;
-
-  margin-top: 0;
-  width: 100%;
-  min-height: calc(100vh - var(--height-nav));
-
-  color: var(--color-background-primary);
-
-  background-position: 50% 50%;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-image: url(./myndir/background.jpg);
-}
-
-.intro .protection {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-
-  background-color: var(--color-protection);
-}
-
-.intro .content {
-  position: relative;
-  z-index: 2;
-
-  margin: auto;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 2em;
-}
-
-.intro .content h1 {
-  margin-top: calc(var(--spacing) * -4);
-}
-
-.intro .content h1,
-.intro .content h2 {
-  margin-bottom: calc(var(--spacing) * 4);
-}
-
 /**
  * Cards á forsíðu.
  * Líta hræðilega út og erfitt að stýra með float! Lögum í verkefni 4 með því að nota flexbox.
@@ -286,7 +226,6 @@ main > section {
   grid-template-rows: auto;
   gap: calc(var(--spacing) * 2);
   justify-items: center;
-
   width: 100%;
 }
 
@@ -296,76 +235,68 @@ main > section {
   width: 100%;
 }
 
-.card .card__header {
+.card .card-header {
   width: 100%;
 }
 
-.card .card__content {
-  flex: 1;
-
+.card .card-content {
   display: flex;
-  gap: var(--spacing);
+  flex: 1;
   flex-direction: column;
+  gap: var(--spacing);
 }
 
-.card .card__text {
+.card .card-text {
   flex: 1;
 }
 
-.card .card__image {
+.card .card-image {
   order: -1;
-
   width: 100%;
 }
 
-.card .card__kicker {
+.card .card-kicker {
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
 }
 
-.card .card__title {
+.card .card-title {
   margin-bottom: 1rem;
   font-size: 2rem;
 }
 
-.card .card__image img {
+.card .card-image img {
   display: block;
-
-  border-top-left-radius: var(--border-radius-regular);
-  border-top-right-radius: var(--border-radius-regular);
   width: 100%;
   height: 300px;
   object-fit: cover;
   object-position: 50% 50%;
+  border-top-left-radius: var(--border-radius-regular);
+  border-top-right-radius: var(--border-radius-regular);
 }
 
-@media (min-width: 550px) {
+@media (width >= 550px) {
   .card {
-    grid-template-columns: repeat(calc(var(--columns)), 1fr);
     grid-template-rows: auto;
+    grid-template-columns: repeat(calc(var(--columns)), 1fr);
     gap: var(--gutter);
   }
 
-  .card .card__content {
+  .card .card-content {
     grid-column: span 7;
   }
 
-  .card .card__image {
+  .card .card-image {
     grid-column: span 5;
     order: initial;
   }
 
-  .card:nth-child(2n) .card__image {
+  .card:nth-child(2n) .card-image {
     order: -1;
   }
 }
 
-/** Efnissíða **/
-
-.content section {
-  margin-bottom: var(--spacing);
-}
 
 /** Töflur **/
 
@@ -375,9 +306,9 @@ main > section {
 }
 
 table {
+  width: 100%;
   margin-bottom: var(--spacing);
   border-spacing: 0;
-  width: 100%;
 }
 
 table th,
@@ -394,16 +325,15 @@ table tbody tr:nth-child(2n + 1) {
 
 form {
   display: grid;
-  grid-template-columns: repeat(var(--columns), 1fr);
   grid-template-rows: auto;
+  grid-template-columns: repeat(var(--columns), 1fr);
   gap: var(--gutter);
-
   width: 100%;
 }
 
 fieldset {
-  border: 0;
   grid-column: span 12;
+  border: 0;
 }
 
 fieldset legend {
@@ -428,20 +358,19 @@ fieldset div span {
 fieldset input,
 fieldset select,
 fieldset textarea {
-  padding: calc(var(--spacing) / 2);
   width: 100%;
-  border: 1px solid #000000;
-
-  background-color: #ffffff;
+  padding: calc(var(--spacing) / 2);
+  background-color: #fff;
+  border: 1px solid #000;
 }
 
 fieldset input[type="checkbox"] {
   display: inline-block;
-  margin-right: calc(var(--spacing) / 2);
   width: auto;
+  margin-right: calc(var(--spacing) / 2);
 }
 
-@media (min-width: 700px) {
+@media (width >= 700px) {
   fieldset {
     grid-column: span 6;
     border: 0;
@@ -457,19 +386,16 @@ fieldset input[type="checkbox"] {
 footer {
   display: grid;
   justify-items: center;
-
+  width: 100%;
   padding-top: var(--spacing);
   padding-bottom: var(--spacing);
-  width: 100%;
-
   background-color: var(--color-accent);
 }
 
 footer > .content {
   display: grid;
-  justify-content: center;
   gap: var(--gutter);
-
+  justify-content: center;
   width: 100%;
 }
 
@@ -477,11 +403,10 @@ footer .footer-section {
   text-align: center;
 }
 
-@media (min-width: 700px) {
+@media (width >= 700px) {
   footer > .content {
-    grid-template-columns: repeat(var(--columns), 1fr);
     grid-template-rows: auto;
-
+    grid-template-columns: repeat(var(--columns), 1fr);
     width: var(--width-offset);
     max-width: var(--max-width);
   }
@@ -499,4 +424,51 @@ footer ul,
 footer section,
 footer h2 {
   margin-bottom: var(--spacing);
+}
+
+/** Efnissíða **/
+
+.content section {
+  margin-bottom: var(--spacing);
+}
+
+/** Forsíða inngangsmynd **/
+
+.intro {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: calc(100vh - var(--height-nav));
+  margin-top: 0;
+  color: var(--color-background-primary);
+  background-image: url("./myndir/background.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 50% 50%;
+  background-size: cover;
+}
+
+.intro .protection {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-color: var(--color-protection);
+}
+
+.intro .content {
+  position: relative;
+  z-index: 2;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  font-size: 2em;
+}
+
+.intro .content h1 {
+  margin-top: calc(var(--spacing) * -4);
+}
+
+.intro .content h1,
+.intro .content h2 {
+  margin-bottom: calc(var(--spacing) * 4);
 }
